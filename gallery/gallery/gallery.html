@@ -29,26 +29,29 @@
 }
 
 body{
-  background:#000;
-  color:#fff;
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
+  background-color: #fff;
+  color:black
 }
-.logo{
-    display:flex;
-    align-items:center;
-
-    font-family:'Playfair Display';
-    font-size:24px;
-    letter-spacing:2px;
-    color:white;
-
-    gap:0;
+.logo {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+    font-family: 'Playfair Display', serif;
 }
 .flip {
   display: inline-block;
   transform: scaleX(-1);
    font-family: 'Playfair Display', serif;
+}
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:25px 60px;
+}
+.logo{
+  font-size:22px;
+  font-weight:600;
 }
 :root{
     --nav-h:80px;
@@ -56,8 +59,6 @@ body{
     --gold-lt:#E8C97A;
     --dark:#0A0A0A;
 }
-
-
 .logo{
     display:flex;
     align-items:center;
@@ -284,13 +285,13 @@ nav ul a{
   border-radius:30px;
   border:1px solid #555;
   background:transparent;
-  color:white;
+  color:rgb(0, 0, 0);
   cursor:pointer;
   transition:0.3s;
 }
 .filter-buttons button:hover{
-  background:white;
-  color:black;
+  background:rgb(0, 0, 0);
+  color:rgb(255, 255, 255);
 }
 .filter-buttons .active{
   background:white;
@@ -299,6 +300,7 @@ nav ul a{
 .card{
   border-radius:20px;
   overflow:hidden;
+  background-color: #fff;
 }
 .card video{
   width:100%;
@@ -306,6 +308,7 @@ nav ul a{
   object-fit:cover;
   aspect-ratio:11/16;
   cursor:pointer;
+  background-color: #fff;
 }
 video:fullscreen {
   width:auto !important;
@@ -433,10 +436,13 @@ video:-webkit-full-screen {
     grid-template-columns:repeat(2,1fr);
   }
 }
-@media(max-width:600px){
-  .gallery{
-    grid-template-columns:1fr;
-  }
+@media (max-width:600px){
+
+    .gallery{
+        grid-template-columns:repeat(2,1fr); /* Two cards */
+        gap:12px;
+        padding:15px;
+    }
 }
 </style>
 </head>
@@ -453,7 +459,7 @@ video:-webkit-full-screen {
     <a href="../../index.html" class="logo">
         <span>DIO</span>
         <span class="flip-d">D</span>
-        <span class="studio-text">STUDIO </span>
+        <span class="studio-text">PHOTOGRAPHY AND FILMS</span>
     </a>
 
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -472,9 +478,9 @@ video:-webkit-full-screen {
 </nav>
         
 <div class="filter-buttons">
-  <button onclick="showType('all')" class="active">All</button>
-  <button onclick="showType('video')">Videos</button>
-  <button onclick="showType('photo')">Photos</button>
+  <button onclick="showType('all',this)" class="active">All</button>
+  <button onclick="showType('video',this)">Videos</button>
+  <button onclick="showType('photo',this)">Photos</button>
 </div>
 <section class="gallery">
 <div class="card video">
@@ -514,39 +520,7 @@ video:-webkit-full-screen {
     aria-label="Couple cinematic video DIOD Studios">
   </video>
 </div>
-<div class="card video">
-  <video 
-    src="video/video4.mp4"
-    poster="thumbnail/video4.jpg"
-    loop
-   preload="none"
-    tabindex="0"
-    title="Wedding Highlights Film DIOD Studios"
-    aria-label="Wedding highlights Chennai videography">
-  </video>
-</div>
-<div class="card video">
-  <video 
-    src="video/video5.mp4"
-    poster="thumbnail/video5.png"
-    loop
-    preload="none"
-    tabindex="0"
-    title="Cinematic Love Story Video"
-    aria-label="Love story cinematic video DIOD Studios">
-  </video>
-</div>
-<div class="card video">
-  <video 
-    src="video/video6.mp4"
-    poster="thumbnail/video6.jpg"
-    loop
-    preload="none"
-    tabindex="0"
-    title="Bride Groom Entry Cinematic Shot"
-    aria-label="Bride groom entry cinematic video">
-  </video>
-</div>
+
 <div class="card video">
   <video 
     src="video/video7.mp4"
@@ -558,28 +532,7 @@ video:-webkit-full-screen {
     aria-label="Love story cinematic video DIOD Studios">
   </video>
 </div>
-<div class="card video">
-  <video 
-    src="video/video8.mp4"
-    poster="thumbnail/video8.jpg"
-    loop
-   preload="none"
-    tabindex="0"
-    title="Cinematic Love Story Video"
-    aria-label="Love story cinematic video DIOD Studios">
-  </video>
-</div>
-<div class="card video">
-  <video 
-    src="video/video9.mp4"
-    poster="thumbnail/video9.jpg"
-    loop
-   preload="none"
-    tabindex="0"
-    title="Cinematic Love Story Video"
-    aria-label="Love story cinematic video DIOD Studios">
-  </video>
-</div>
+
 
 <div class="card video">
   <video 
@@ -637,17 +590,7 @@ video:-webkit-full-screen {
     aria-label="Love story cinematic video DIOD Studios">
   </video>
 </div>
-<div class="card video">
-  <video 
-    src="video/video15.mp4"
-    poster="thumbnail/video15.jpg"
-    loop
-    preload="none"
-    tabindex="0"
-    title="Wedding Reel Edit DIOD Studios"
-    aria-label="Wedding reel editing Chennai">
-  </video>
-</div>
+
 <div class="card photo">
   <img src="image/img1.jpg" alt="Gallery Image">
 </div>
@@ -688,7 +631,7 @@ video:-webkit-full-screen {
   <img src="image/img13.jpg">
 </div>
 <div class="card photo">
-  <img src="image/img14.jpg">
+  <img src="image/wedding15.jpg">
 </div>
 <div class="card photo">
   <img src="image/img15.jpg">
@@ -724,10 +667,10 @@ video:-webkit-full-screen {
   <img src="image/img26.jpg">
 </div>
 <div class="card photo">
-  <img src="image/img27.jpg">
+  <img src="image/grid-19.jpg">
 </div>
 <div class="card photo">
-  <img src="image/img28.jpg">
+  <img src="image/pov05.jpeg">
 </div>
 <div class="card photo">
   <img src="image/img29.jpg">
@@ -787,7 +730,7 @@ video:-webkit-full-screen {
   <img src="image/img46.jpg">
 </div>
 <div class="card photo">
-  <img src="image/img47.jpg">
+  <img src="image/event4.jpg">
 </div>
 <div class="card photo">
   <img src="image/img48.jpg">
@@ -808,89 +751,89 @@ video:-webkit-full-screen {
   <img id="previewImg">
 </div>
 <script>
-function showType(type){function showType(type){
+function showType(type, btn) {
 
     const cards = document.querySelectorAll(".card");
     const buttons = document.querySelectorAll(".filter-buttons button");
 
-    buttons.forEach(btn=>{
+    // Remove active class from all buttons
+    buttons.forEach(button => button.classList.remove("active"));
 
-        btn.classList.remove("active");
+    // Add active class to clicked button
+    btn.classList.add("active");
 
-        if(btn.textContent.toLowerCase().includes(type) ||
-           (type==="all" && btn.textContent==="All"))
-        {
-            btn.classList.add("active");
+    // Filter cards
+    cards.forEach(card => {
+        if (type === "all" || card.classList.contains(type)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
         }
-
     });
 
-    cards.forEach(card=>{
-
-        if(type==="all"){
-
-            card.style.display="block";
-
-        }
-
-        else if(card.classList.contains(type)){
-
-            card.style.display="block";
-
-        }
-
-        else{
-
-            card.style.display="none";
-
-        }
-
-    });
-
-}
-  const cards = document.querySelectorAll(".card");
-  const buttons = document.querySelectorAll(".filter-buttons button");
-  buttons.forEach(btn => btn.classList.remove("active"));
-  event.target.classList.add("active");
-  cards.forEach(card => {
-    if(type === "all"){
-      card.style.display = "block";
-    }
-    else if(card.classList.contains(type)){
-      card.style.display = "block";
-    }
-    else{
-      card.style.display = "none";
-    }
-  });
 }
 const videos = document.querySelectorAll(".card video");
+
 videos.forEach(video => {
-  video.pause();
-  video.controls = false;
-  video.addEventListener("click", (e) => {
-    e.stopPropagation();
-    videos.forEach(v => {
-      if (v !== video) {
-        v.pause();
-        v.controls = false;
-        v.removeAttribute("controls");
-        v.currentTime = 0;
-        v.load();
-      }
-    });
-    video.controls = true;
-    video.setAttribute("controls", "true");
-    video.play();
-  });
-  video.addEventListener("ended", () => {
+
+    video.pause();
     video.controls = false;
-    video.removeAttribute("controls");
-    video.currentTime = 0;
-    video.load(); 
-  });
+    video.muted = true;
+
+    // Hover play
+    video.addEventListener("mouseenter", () => {
+
+        // Stop all other videos
+        videos.forEach(v => {
+            if (v !== video) {
+                v.pause();
+                v.controls = false;
+                v.load();      // Show poster
+            }
+        });
+
+        video.play();
+    });
+
+    // Hover leave
+    video.addEventListener("mouseleave", () => {
+        video.pause();
+        video.load();          // Show poster
+    });
+
+    // Mobile click
+    video.addEventListener("click", () => {
+
+        videos.forEach(v => {
+            if (v !== video) {
+                v.pause();
+                v.controls = false;
+                v.load();      // Show poster
+            }
+        });
+
+        if (video.paused) {
+            video.controls = true;
+            video.muted = false;
+            video.play();
+        } else {
+            video.pause();
+            video.controls = false;
+            video.load();      // Show poster
+        }
+
+    });
+
+    // Fullscreen
+    video.addEventListener("dblclick", () => {
+        if (video.requestFullscreen)
+            video.requestFullscreen();
+        else if (video.webkitRequestFullscreen)
+            video.webkitRequestFullscreen();
+    });
 
 });
+
 
 const images = document.querySelectorAll(".card img");
 const previewBox = document.getElementById("previewBox");

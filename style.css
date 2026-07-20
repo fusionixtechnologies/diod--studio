@@ -298,7 +298,7 @@ nav a:hover::after { width: 100%; }
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     opacity: 0;
     transform: translateY(16px);
     animation: fadeUp .8s .3s var(--ease-out-expo) forwards;
@@ -308,7 +308,7 @@ nav a:hover::after { width: 100%; }
     max-width: 780px;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(42px, 6vw, 76px);
-    line-height: 1.25;
+    line-height: 1.5;
     font-weight: 400;
     opacity: 0;
     transform: translateY(24px);
@@ -320,6 +320,11 @@ nav a:hover::after { width: 100%; }
     color: var(--gold-lt);
 }
 
+.hero-content h1 em{
+    display:inline-block;
+    line-height:0.95;
+    font-size:40px;
+}
 .hero-cta {
     margin-top: 44px;
     display: flex;
@@ -369,7 +374,15 @@ nav a:hover::after { width: 100%; }
     background: rgba(255,255,255,.06);
     transform: translateY(-3px);
 }
+@media (max-width: 768px) {
 
+    .hero-content h1 em{
+        display: inline-block;
+        font-size: 22px;   /* unga preference */
+        line-height: 1.0;
+    }
+
+}
 
 /* ──────────────────────────────
    MARQUEE TICKER
@@ -447,23 +460,24 @@ nav a:hover::after { width: 100%; }
 }
 
 .prewedding-header h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 3vw, 42px);
-    font-weight: 400;
-    max-width: 500px;
-    line-height: 1.3;
+    max-width: 780px;
+    font-family: 'The Seasons', serif;
+    font-size: clamp(24px, 3vw, 20px);
+    font-weight: 500;
 }
 
 .pre-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    
 }
 
 .pre-card {
     position: relative;
     overflow: hidden;
     border-radius: 16px;
+    
 }
 
 /* Shimmer skeleton while image loads */
@@ -490,7 +504,7 @@ nav a:hover::after { width: 100%; }
 
 .pre-card img {
     width: 100%;
-    height: 400px;
+    height: 650px;
     object-fit: cover;
     transition: transform .9s var(--ease-out-expo);
     position: relative;
@@ -548,7 +562,7 @@ nav a:hover::after { width: 100%; }
 
 .timeless-main-img {
     width: 100%;
-    height: 960px;
+    
     object-fit: cover;
     transition: transform 1.2s var(--ease-out-expo);
 }
@@ -562,8 +576,8 @@ nav a:hover::after { width: 100%; }
 
 .timeless-text h2 {
     color: var(--rust);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 5vw, 68px);
+    font-family: 'The Seasons', serif;
+    font-size: clamp(36px, 5vw, 50px);
     line-height: 1.2;
     max-width: 860px;
     margin: 0 auto 30px;
@@ -595,7 +609,7 @@ nav a:hover::after { width: 100%; }
 /* Stats row */
 .timeless-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: rgba(139,58,42,.15);
     border-radius: 16px;
@@ -611,8 +625,8 @@ nav a:hover::after { width: 100%; }
 
 .stat-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 56px;
-    font-weight: 500;
+    font-size: 45px;
+    font-weight: 450;
     color: var(--rust);
     line-height: 1;
     display: block;
@@ -629,82 +643,173 @@ nav a:hover::after { width: 100%; }
 
 /* ──────────────────────────────
    WEDDING SERIES
-────────────────────────────── */
-.wedding-series {
-    background: var(--dark);
-    padding: 120px 70px;
+───/* ───────── WEDDING SERIES ───────── */
+
+.wedding-series{
+    padding:120px 7%;
+    overflow:hidden;
 }
 
-.wedding-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 60px;
-    gap: 20px;
+.wedding-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:60px;
+    gap:40px;
 }
 
-.series-label {
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
+.series-label{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+/*fonts*/
+@font-face {
+    font-family: 'The Seasons';
+    src: url('./Fonts/MonumentExtended-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.wedding-top h2 {
+@font-face {
+    font-family: TamilFont;
+    src: url('./Fonts/st_168.TTF') format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: TamFont;
+    src: url('./Fonts/st_140.TTF') format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+.tamil-txt2 {
+    font-family: 'TamilFont', sans-serif;
+    font-size: 50px;
     color: var(--cream);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(34px, 4.5vw, 60px);
-    font-weight: 500;
     line-height: 1.15;
+    font-weight: 450;
+    text-align: justify;
 }
 
-/* Masonry-style grid: first card is tall */
-.wedding-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 16px;
+.tamil-txt1 {
+    font-family: 'TamFont', sans-serif;
+    font-size: 60px;
+    color: var(--cream);
+    line-height: 1.15;
+    font-weight: 450;
+}
+#gold{
+    
+    color: var(--gold);
+}
+.wedding-top h2{
+    color:var(--cream);
+    font-family:'TamilFont'!important;
+    font-size:60px;
+    font-weight:450;
+    line-height:1.15;
 }
 
-.wedding-card {
-    overflow: hidden;
-    border-radius: 18px;
-    position: relative;
+/* Parallax Container */
+
+.wedding-parallax{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    overflow:hidden;
+    margin-bottom:120px; /* services ku gap */
 }
 
-.wedding-card:first-child {
-    grid-row: span 2;
+/* Moving Rows */
+
+.parallax-row{
+    display:flex;
+    gap:20px;
+    width:max-content;
 }
 
-.wedding-card img {
-    width: 100%;
-    height: 100%;
-    min-height: 240px;
-    object-fit: cover;
-    transition: transform 1s var(--ease-out-expo);
-    display: block;
+/* Auto Moving Animation */
+
+.row-left{
+    animation:moveLeft 30s linear infinite;
 }
 
-.wedding-card:first-child img { min-height: 500px; }
-
-.wedding-card:hover img { transform: scale(1.07); }
-
-/* card caption on hover */
-.wedding-card::after {
-    content: attr(data-label);
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 20px 18px 16px;
-    background: linear-gradient(transparent, rgba(0,0,0,.75));
-    color: white;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity .35s, transform .35s;
+.row-right{
+    animation:moveRight 30s linear infinite;
 }
 
-.wedding-card:hover::after { opacity: 1; transform: translateY(0); }
+/* Cards */
+
+.gallery-card{
+     flex:0 0 300px;
+    height:420px;
+    overflow:hidden;
+    border-radius:24px;
+}
+
+.gallery-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:24px;
+    transition:0.8s;
+}
+
+.gallery-card:hover img{
+    transform:scale(1.06);
+}
+
+/* Animations */
+
+@keyframes moveLeft{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+@keyframes moveRight{
+    from{
+        transform:translateX(-50%);
+    }
+    to{
+        transform:translateX(0);
+    }
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    .gallery-card{
+        flex:0 0 140px;
+        height:200px;
+    }
+
+    .parallax-row{
+        gap:12px;
+    }
+
+    .row-left{
+        animation:moveLeft 20s linear infinite;
+    }
+
+    .row-right{
+        animation:moveRight 20s linear infinite;
+    }
+
+}
+    .wedding-parallax{
+        margin-bottom:-10px;
+    }
 
 /* ──────────────────────────────
    SERVICES
@@ -714,7 +819,7 @@ nav a:hover::after { width: 100%; }
     min-height: 90vh;
     background:
         linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
-        url("images/services-bg.jpg") center/cover no-repeat;
+        url("images/services1.jpg") center/cover no-repeat;
     background-attachment: fixed;
 }
 
@@ -738,27 +843,32 @@ nav a:hover::after { width: 100%; }
 
 .services-content h2 {
     color: var(--cream);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(38px, 5.5vw, 72px);
+    font-family: 'The Seasons', serif;
+    font-size: clamp(38px, 5.5vw, 45px);
     line-height: 1.2;
-    font-weight: 500;
+    font-weight: 450;
     margin-bottom: 60px;
 }
 
-.service-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    max-width: 680px;
-    margin: auto;
+.service-list{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(260px, 1fr));
+    gap:20px;
+
+    max-width:680px;
+
+    margin:0 auto;
+
+    justify-content:center;
+    justify-items:center;
 }
 
 .service-item {
     border: 1px solid rgba(255,255,255,.15);
-    padding: 20px 28px;
+     padding: 24px 22px;
+    font-size: 20px;
     width: 280px;
     color: var(--cream);
-    font-size: 22px;
     font-family: 'Cormorant Garamond', serif;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -805,8 +915,8 @@ nav a:hover::after { width: 100%; }
 
 .pov-heading {
     color: white;
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 3.5vw, 48px);
+    font-family: 'The Seasons', serif;
+    font-size: clamp(24px, 3vw, 20px);
     font-weight: 500;
 }
 
@@ -825,7 +935,7 @@ nav a:hover::after { width: 100%; }
 
 .reel-card video {
     width: 100%;
-    height: 380px;
+    height: 780px;
     object-fit: cover;
     display: block;
     transition: transform .9s var(--ease-out-expo);
@@ -863,9 +973,9 @@ nav a:hover::after { width: 100%; }
 
 .pov-text h3 {
     color: white;
-    font-size: clamp(28px, 3.5vw, 46px);
-    font-family: 'Playfair Display', serif;
-    font-weight: 500;
+    font-size: clamp(28px, 3.5vw, 25px);
+    font-family: 'The Seasons', serif;
+    font-weight: 450;
     line-height: 1.3;
 }
 
@@ -882,7 +992,7 @@ nav a:hover::after { width: 100%; }
 
 .pov-card img {
     width: 100%;
-    height: 360px;
+    height: 560px;
     object-fit: cover;
     display: block;
     transition: transform .9s var(--ease-out-expo);
@@ -911,10 +1021,11 @@ nav a:hover::after { width: 100%; }
 
 .birthday-top h2 {
     color: var(--cream);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(34px, 5vw, 64px);
+    font-family: 'The Seasons', serif;
+    font-size: clamp(24px, 3vw, 20px);
     line-height: 1.15;
-    font-weight: 500;
+    font-weight: 450;
+    max-width: 780px;
 }
 
 .birthday-grid {
@@ -996,7 +1107,13 @@ nav a:hover::after { width: 100%; }
     font-family: 'Cormorant Garamond', serif;
     letter-spacing: 1px;
 }
-
+.footer-contact {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 100px;
+}
 .footer-book-btn {
     margin-top: 44px;
     padding: 16px 48px;
@@ -1063,7 +1180,28 @@ nav a:hover::after { width: 100%; }
     transform:scaleX(-1);
     margin-left:-8px; /* adjust if needed */
 }
+/* Developer Credit */
+.footer-credit{
+    text-align: center;
+    margin-top: 22px;
+}
 
+.footer-credit p{
+    margin: 0;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: rgba(255,255,255,.5);
+    letter-spacing: 1px;
+}
+
+.footer-credit span{
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.footer-credit span:hover{
+    color: var(--gold-lt);
+}
 
 
 /* ──────────────────────────────
@@ -1151,7 +1289,7 @@ nav a:hover::after { width: 100%; }
 
     .pov-grid { grid-template-columns: repeat(3, 1fr); }
     .pov-card img { height: 260px; }
-    .reel-card video { height: 280px; }
+    .reel-card video { height: 580px; }
 
     .prewedding { padding: 80px 40px; }
     .pov { padding: 80px 40px; }
@@ -1204,7 +1342,7 @@ nav a:hover::after { width: 100%; }
         gap: 10px;
     }
 
-    .pre-card img { height: 220px; }
+    .pre-card img { height: 100%; width: 100%; }
 
     /* Timeless */
     .timeless { padding: 60px 20px; }
@@ -1264,14 +1402,14 @@ nav a:hover::after { width: 100%; }
     .pov { padding: 60px 20px; }
     .pov-header { flex-direction: column; align-items: flex-start; gap: 12px; }
     .reels-grid { grid-template-columns: 1fr; gap: 12px; }
-    .reel-card video { height: 260px; }
+    .reel-card video { height: 660px; }
     .pov-grid { grid-template-columns: 1fr; gap: 12px; }
-    .pov-card img { height: 260px; }
-    .pov-text h3 { font-size: clamp(26px, 7vw, 36px); }
+    .pov-card img { height: 100%; width: 100%; }
+    .pov-text h3 { font-size: clamp(26px, 7vw, 30px); }
 
     /* Birthday */
     .birthday { padding: 70px 20px; }
-    .birthday-top h2 { font-size: clamp(30px, 8vw, 42px); }
+    .birthday-top h2 { font-size: clamp(28px, 3vw, 20px); }
     .birthday-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .birthday-card:nth-child(2) { margin-top: 20px; }
     .birthday-card img { height: 180px; }
@@ -1286,6 +1424,7 @@ nav a:hover::after { width: 100%; }
         text-align: center;
     }
     .footer-socials { justify-content: center; }
+    .footer-contact { padding-left: 0; }
 }
 
 .logo{
@@ -1323,7 +1462,7 @@ nav a:hover::after { width: 100%; }
 .logo span{
 
     font-family:'Playfair Display';
-    font-size:26px;
+    font-size:24px;
 
 }
 
@@ -1339,8 +1478,22 @@ nav a:hover::after { width: 100%; }
     margin-left:12px;
 
     font-family:'Inter';
-    font-size:13px;
+    font-size:16px;
 
     letter-spacing:4px;
+
+}
+/* Mobile adjustments for logo and studio text */
+@media (max-width:768px){
+
+    .logo span{
+        font-size:16px;
+    }
+
+    .studio-text{
+        font-size:13px;
+        letter-spacing:2px;
+        margin-left:8px;
+    }
 
 }

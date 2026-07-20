@@ -3,6 +3,30 @@
    Performance-first: IntersectionObserver,
    passive listeners, RAF-throttled cursor
 ================================================ */
+  
+const rowLeft = document.querySelector(".row-left");
+const rowRight = document.querySelector(".row-right");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.innerWidth <= 768) return;
+
+    const section =
+    document.querySelector(".wedding-series");
+
+    const rect =
+    section.getBoundingClientRect();
+
+    const offset =
+    (window.innerHeight - rect.top);
+
+    rowLeft.style.transform =
+    `translateX(${-offset * 0.08}px)`;
+
+    rowRight.style.transform =
+    `translateX(${offset * 0.08}px)`;
+
+});
 
 /* ── Custom Cursor ── */
 const cursorDot  = document.querySelector('.cursor-dot');

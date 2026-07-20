@@ -1338,8 +1338,7 @@ nav a:hover::after { width: 100%; }
         gap: 10px;
     }
 
-    .pre-card img { height: 100%;
-    object-fit: cover; }
+    .pre-card img { height: 100%; width: 100%; }
 
     /* Timeless */
     .timeless { padding: 60px 20px; }

@@ -674,7 +674,7 @@ nav a:hover::after { width: 100%; }
 
 @font-face {
     font-family: TamilFont;
-    src: url('./fonts/st_168.TTF') format("truetype");
+    src: url('./Fonts/st_168.TTF') format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -682,7 +682,7 @@ nav a:hover::after { width: 100%; }
 
 @font-face {
     font-family: TamFont;
-    src: url('./fonts/st_140.TTF') format("truetype");
+    src: url('./Fonts/st_140.TTF') format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;

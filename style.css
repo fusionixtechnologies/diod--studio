@@ -1424,6 +1424,7 @@ nav a:hover::after { width: 100%; }
         text-align: center;
     }
     .footer-socials { justify-content: center; }
+    .footer-contact { padding-left: 0; }
 }
 
 .logo{

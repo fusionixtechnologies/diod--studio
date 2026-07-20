@@ -665,6 +665,7 @@ nav a:hover::after { width: 100%; }
     text-transform:uppercase;
     margin-bottom:10px;
 }
+/*fonts*/
 @font-face {
     font-family: 'The Seasons';
     src: url('./Fonts/MonumentExtended-Regular.otf') format('opentype');

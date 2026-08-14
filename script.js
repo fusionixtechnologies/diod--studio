@@ -187,12 +187,11 @@ if (marqueeTrack) {
         marqueeTrack.style.animationPlayState = 'running';
     });
 }
+/* ── Lazy Load + Auto Play Videos ── */
 
-/* ── Lazy-load + autoplay videos ── */
+const lazyVideos = document.querySelectorAll('.lazy-video');
 
-const lazyVideos = document.querySelectorAll('.reel-card video');
-
-const videoObserver = new IntersectionObserver((entries) => {
+const videoObserver = new IntersectionObserver((entries, observer) => {
 
     entries.forEach(entry => {
 
@@ -200,41 +199,29 @@ const videoObserver = new IntersectionObserver((entries) => {
 
         if (entry.isIntersecting) {
 
-            // Load video only when it comes near the viewport
-            if (!video.dataset.loaded) {
-
-                const source = video.querySelector('source');
-
-                if (source && source.dataset.src) {
-                    source.src = source.dataset.src;
-                    video.load();
-                    video.dataset.loaded = 'true';
-                }
+            // Load video only when it comes near viewport
+            if (!video.src && video.dataset.src) {
+                video.src = video.dataset.src;
+                video.load();
             }
 
-            // Start playing
+            // Try autoplay
             video.play().catch(() => {});
 
         } else {
 
-            // Stop playing when video is away from viewport
+            // Stop video when it goes out of screen
             video.pause();
+
         }
 
     });
 
 }, {
-    threshold: 0.1,
-    rootMargin: '400px 0px'
+    rootMargin: '300px 0px',
+    threshold: 0.1
 });
 
-
 lazyVideos.forEach(video => {
-
-    // Make sure browser doesn't preload automatically
-    video.removeAttribute('autoplay');
-    video.setAttribute('preload', 'none');
-
     videoObserver.observe(video);
-
 });

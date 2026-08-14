@@ -188,16 +188,53 @@ if (marqueeTrack) {
     });
 }
 
-/* ── Performance: pause off-screen videos ── */
-const videoObserver = new IntersectionObserver(entries => {
+/* ── Lazy-load + autoplay videos ── */
+
+const lazyVideos = document.querySelectorAll('.reel-card video');
+
+const videoObserver = new IntersectionObserver((entries) => {
+
     entries.forEach(entry => {
+
         const video = entry.target;
+
         if (entry.isIntersecting) {
+
+            // Load video only when it comes near the viewport
+            if (!video.dataset.loaded) {
+
+                const source = video.querySelector('source');
+
+                if (source && source.dataset.src) {
+                    source.src = source.dataset.src;
+                    video.load();
+                    video.dataset.loaded = 'true';
+                }
+            }
+
+            // Start playing
             video.play().catch(() => {});
+
         } else {
+
+            // Stop playing when video is away from viewport
             video.pause();
         }
-    });
-}, { threshold: 0.1 });
 
-document.querySelectorAll('video[autoplay]').forEach(v => videoObserver.observe(v));
+    });
+
+}, {
+    threshold: 0.1,
+    rootMargin: '400px 0px'
+});
+
+
+lazyVideos.forEach(video => {
+
+    // Make sure browser doesn't preload automatically
+    video.removeAttribute('autoplay');
+    video.setAttribute('preload', 'none');
+
+    videoObserver.observe(video);
+
+});

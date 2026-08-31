@@ -1,227 +1,802 @@
 /* ================================================
    DIOD STUDIO — script.js
-   Performance-first: IntersectionObserver,
-   passive listeners, RAF-throttled cursor
+   Performance Optimized
 ================================================ */
-  
+
+
+/* ================================================
+   WEDDING SCROLL EFFECT
+   RAF throttled
+================================================ */
+
 const rowLeft = document.querySelector(".row-left");
 const rowRight = document.querySelector(".row-right");
+const weddingSection = document.querySelector(".wedding-series");
 
-window.addEventListener("scroll",()=>{
+let scrollTicking = false;
 
-    if(window.innerWidth <= 768) return;
+function updateWeddingParallax() {
 
-    const section =
-    document.querySelector(".wedding-series");
+    if (
+        window.innerWidth <= 768 ||
+        !rowLeft ||
+        !rowRight ||
+        !weddingSection
+    ) {
+        scrollTicking = false;
+        return;
+    }
 
-    const rect =
-    section.getBoundingClientRect();
+    const rect = weddingSection.getBoundingClientRect();
 
-    const offset =
-    (window.innerHeight - rect.top);
+    /*
+       Do calculations only when the section
+       is reasonably close to the viewport.
+    */
 
-    rowLeft.style.transform =
-    `translateX(${-offset * 0.08}px)`;
+    if (
+        rect.bottom > -300 &&
+        rect.top < window.innerHeight + 300
+    ) {
 
-    rowRight.style.transform =
-    `translateX(${offset * 0.08}px)`;
+        const offset =
+            window.innerHeight - rect.top;
 
-});
+        rowLeft.style.transform =
+            `translate3d(${-offset * 0.08}px,0,0)`;
 
-/* ── Custom Cursor ── */
-const cursorDot  = document.querySelector('.cursor-dot');
-const cursorRing = document.querySelector('.cursor-ring');
+        rowRight.style.transform =
+            `translate3d(${offset * 0.08}px,0,0)`;
 
-if (cursorDot && cursorRing && window.matchMedia('(pointer: fine)').matches) {
-    let mouseX = 0, mouseY = 0;
-    let ringX  = 0, ringY  = 0;
-    let rafId;
+    }
 
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%,-50%)`;
-    }, { passive: true });
+    scrollTicking = false;
+}
 
-    const lerp = (a, b, t) => a + (b - a) * t;
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (!scrollTicking) {
+
+            requestAnimationFrame(
+                updateWeddingParallax
+            );
+
+            scrollTicking = true;
+        }
+
+    },
+    { passive: true }
+);
+
+
+/* ================================================
+   CUSTOM CURSOR
+================================================ */
+
+const cursorDot =
+    document.querySelector(".cursor-dot");
+
+const cursorRing =
+    document.querySelector(".cursor-ring");
+
+
+if (
+    cursorDot &&
+    cursorRing &&
+    window.matchMedia("(pointer: fine)").matches
+) {
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let ringX = 0;
+    let ringY = 0;
+
+
+    document.addEventListener(
+        "mousemove",
+        (e) => {
+
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            cursorDot.style.transform =
+                `translate3d(${mouseX}px,${mouseY}px,0)
+                 translate(-50%,-50%)`;
+
+        },
+        { passive: true }
+    );
+
+
+    const lerp =
+        (a, b, t) =>
+            a + (b - a) * t;
+
 
     function animateCursor() {
-        ringX = lerp(ringX, mouseX, 0.13);
-        ringY = lerp(ringY, mouseY, 0.13);
-        cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%,-50%)`;
-        rafId = requestAnimationFrame(animateCursor);
+
+        ringX =
+            lerp(
+                ringX,
+                mouseX,
+                0.13
+            );
+
+        ringY =
+            lerp(
+                ringY,
+                mouseY,
+                0.13
+            );
+
+        cursorRing.style.transform =
+            `translate3d(${ringX}px,${ringY}px,0)
+             translate(-50%,-50%)`;
+
+        requestAnimationFrame(
+            animateCursor
+        );
     }
+
 
     animateCursor();
 
-    document.querySelectorAll('a, button, .pre-card, .wedding-card, .birthday-card, .reel-card, .pov-card, .service-item').forEach(el => {
-        el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
-        el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
+
+    document.querySelectorAll(
+        `
+        a,
+        button,
+        .pre-card,
+        .birthday-card,
+        .reel-card,
+        .pov-card,
+        .service-item
+        `
+    ).forEach((el) => {
+
+        el.addEventListener(
+            "mouseenter",
+            () => {
+                cursorRing.classList.add(
+                    "hovering"
+                );
+            }
+        );
+
+        el.addEventListener(
+            "mouseleave",
+            () => {
+                cursorRing.classList.remove(
+                    "hovering"
+                );
+            }
+        );
+
     });
+
 }
 
-/* ── Sticky Nav ── */
-const nav = document.querySelector('nav');
 
-const navObserver = new IntersectionObserver(
-    ([entry]) => nav.classList.toggle('scrolled', !entry.isIntersecting),
-    { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
-);
+/* ================================================
+   STICKY NAV
+================================================ */
 
-const heroSection = document.querySelector('.hero');
-if (heroSection) navObserver.observe(heroSection);
+const nav =
+    document.querySelector("nav");
 
-/* ── Mobile Menu ── */
-const toggle     = document.querySelector('.nav-toggle');
-const mobileMenu = document.querySelector('.mobile-menu');
+const heroSection =
+    document.querySelector(".hero");
 
-if (toggle && mobileMenu) {
-    function openMenu() {
-        toggle.classList.add('open');
-        mobileMenu.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-    }
 
-    function closeMenu() {
-        toggle.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-    }
+if (nav && heroSection) {
 
-    toggle.addEventListener('click', () =>
-        mobileMenu.classList.contains('open') ? closeMenu() : openMenu()
+    const navObserver =
+        new IntersectionObserver(
+            ([entry]) => {
+
+                nav.classList.toggle(
+                    "scrolled",
+                    !entry.isIntersecting
+                );
+
+            },
+            {
+                threshold: 0,
+                rootMargin:
+                    "-80px 0px 0px 0px"
+            }
+        );
+
+    navObserver.observe(
+        heroSection
+    );
+}
+
+
+/* ================================================
+   MOBILE MENU
+================================================ */
+
+const toggle =
+    document.querySelector(
+        ".nav-toggle"
     );
 
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+const mobileMenu =
+    document.querySelector(
+        ".mobile-menu"
+    );
 
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeMenu();
-    });
-}
 
-/* ── IntersectionObserver Reveal ── */
-const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-clip, .reveal-fade');
+if (
+    toggle &&
+    mobileMenu
+) {
 
-const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            revealObserver.unobserve(entry.target); // fire once
-        }
-    });
-}, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -60px 0px'
-});
+    function openMenu() {
 
-revealEls.forEach(el => revealObserver.observe(el));
+        toggle.classList.add(
+            "open"
+        );
 
-/* ── Image shimmer: mark loaded ── */
-document.querySelectorAll('.pre-card img').forEach(img => {
-    if (img.complete) {
-        img.closest('.pre-card')?.classList.add('loaded');
-    } else {
-        img.addEventListener('load', () => img.closest('.pre-card')?.classList.add('loaded'));
+        mobileMenu.classList.add(
+            "open"
+        );
+
+        toggle.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+        document.body.style.overflow =
+            "hidden";
     }
-});
 
-/* ── Lazy load images ── */
-if ('loading' in HTMLImageElement.prototype) {
-    // native lazy load — handled in HTML
-} else {
-    // fallback polyfill via IntersectionObserver
-    const lazyImgs = document.querySelectorAll('img[loading="lazy"]');
-    const lazyObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) img.src = img.dataset.src;
-                lazyObserver.unobserve(img);
+
+    function closeMenu() {
+
+        toggle.classList.remove(
+            "open"
+        );
+
+        mobileMenu.classList.remove(
+            "open"
+        );
+
+        toggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        document.body.style.overflow =
+            "";
+    }
+
+
+    toggle.addEventListener(
+        "click",
+        () => {
+
+            if (
+                mobileMenu.classList.contains(
+                    "open"
+                )
+            ) {
+                closeMenu();
             }
+
+            else {
+                openMenu();
+            }
+
+        }
+    );
+
+
+    mobileMenu
+        .querySelectorAll("a")
+        .forEach((a) => {
+
+            a.addEventListener(
+                "click",
+                closeMenu
+            );
+
         });
-    }, { rootMargin: '200px' });
-    lazyImgs.forEach(img => lazyObserver.observe(img));
+
+
+    document.addEventListener(
+        "keydown",
+        (e) => {
+
+            if (
+                e.key === "Escape"
+            ) {
+                closeMenu();
+            }
+
+        }
+    );
+
 }
 
-/* ── Count-up numbers ── */
+
+/* ================================================
+   REVEAL ANIMATIONS
+================================================ */
+
+const revealEls =
+    document.querySelectorAll(
+        `
+        .reveal,
+        .reveal-stagger,
+        .reveal-clip,
+        .reveal-fade
+        `
+    );
+
+
+const revealObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "active"
+                        );
+
+                        revealObserver.unobserve(
+                            entry.target
+                        );
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.08,
+            rootMargin:
+                "0px 0px -50px 0px"
+        }
+    );
+
+
+revealEls.forEach(
+    (el) => {
+        revealObserver.observe(
+            el
+        );
+    }
+);
+
+
+/* ================================================
+   IMAGE SHIMMER
+================================================ */
+
+document
+    .querySelectorAll(
+        ".pre-card img"
+    )
+    .forEach(
+        (img) => {
+
+            const card =
+                img.closest(
+                    ".pre-card"
+                );
+
+
+            if (!card) return;
+
+
+            if (
+                img.complete &&
+                img.naturalWidth > 0
+            ) {
+
+                card.classList.add(
+                    "loaded"
+                );
+
+            }
+
+            else {
+
+                img.addEventListener(
+                    "load",
+                    () => {
+
+                        card.classList.add(
+                            "loaded"
+                        );
+
+                    },
+                    { once: true }
+                );
+
+            }
+
+        }
+    );
+
+
+/* ================================================
+   COUNT UP
+================================================ */
+
 function countUp(el) {
-    const target = parseFloat(el.dataset.target || el.textContent) || 0;
-    const suffix = el.dataset.suffix || '';
-    const duration = 1600;
-    const start = performance.now();
+
+    const target =
+        parseFloat(
+            el.dataset.target ||
+            el.textContent
+        ) || 0;
+
+
+    const suffix =
+        el.dataset.suffix || "";
+
+
+    const duration =
+        1600;
+
+
+    const start =
+        performance.now();
+
 
     function update(now) {
-        const elapsed  = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        // ease out quart
-        const eased = 1 - Math.pow(1 - progress, 4);
-        const value = Math.round(eased * target);
-        el.textContent = value.toLocaleString() + suffix;
-        if (progress < 1) requestAnimationFrame(update);
+
+        const elapsed =
+            now - start;
+
+
+        const progress =
+            Math.min(
+                elapsed / duration,
+                1
+            );
+
+
+        const eased =
+            1 -
+            Math.pow(
+                1 - progress,
+                4
+            );
+
+
+        const value =
+            Math.round(
+                eased * target
+            );
+
+
+        el.textContent =
+            value.toLocaleString() +
+            suffix;
+
+
+        if (
+            progress < 1
+        ) {
+
+            requestAnimationFrame(
+                update
+            );
+
+        }
+
     }
 
-    requestAnimationFrame(update);
+
+    requestAnimationFrame(
+        update
+    );
+
 }
 
-const statNums = document.querySelectorAll('.count-up');
-const statObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            countUp(entry.target);
-            statObserver.unobserve(entry.target);
+
+const statNums =
+    document.querySelectorAll(
+        ".count-up"
+    );
+
+
+const statObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        countUp(
+                            entry.target
+                        );
+
+                        statObserver.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.5
         }
-    });
-}, { threshold: 0.5 });
+    );
 
-statNums.forEach(el => statObserver.observe(el));
 
-/* ── Marquee pause on hover ── */
-const marqueeTrack = document.querySelector('.marquee-track');
+statNums.forEach(
+    (el) => {
+
+        statObserver.observe(
+            el
+        );
+
+    }
+);
+
+
+/* ================================================
+   MARQUEE HOVER
+================================================ */
+
+const marqueeTrack =
+    document.querySelector(
+        ".marquee-track"
+    );
+
+
 if (marqueeTrack) {
-    marqueeTrack.parentElement.addEventListener('mouseenter', () => {
-        marqueeTrack.style.animationPlayState = 'paused';
-    });
-    marqueeTrack.parentElement.addEventListener('mouseleave', () => {
-        marqueeTrack.style.animationPlayState = 'running';
-    });
+
+    const marqueeParent =
+        marqueeTrack.parentElement;
+
+
+    marqueeParent.addEventListener(
+        "mouseenter",
+        () => {
+
+            marqueeTrack.style.animationPlayState =
+                "paused";
+
+        }
+    );
+
+
+    marqueeParent.addEventListener(
+        "mouseleave",
+        () => {
+
+            marqueeTrack.style.animationPlayState =
+                "running";
+
+        }
+    );
+
 }
-/* ── Lazy Load + Auto Play Videos ── */
 
-const lazyVideos = document.querySelectorAll('.lazy-video');
 
-const videoObserver = new IntersectionObserver((entries, observer) => {
+/* ================================================
+   DEFER LARGE CSS BACKGROUND IMAGES
+================================================ */
 
-    entries.forEach(entry => {
+const deferredBackgrounds =
+    document.querySelectorAll(
+        ".deferred-bg"
+    );
 
-        const video = entry.target;
 
-        if (entry.isIntersecting) {
+const backgroundObserver =
+    new IntersectionObserver(
+        (entries) => {
 
-            // Load video only when it comes near viewport
-            if (!video.src && video.dataset.src) {
-                video.src = video.dataset.src;
-                video.load();
-            }
+            entries.forEach(
+                (entry) => {
 
-            // Try autoplay
-            video.play().catch(() => {});
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-        } else {
+                        entry.target
+                            .classList
+                            .add(
+                                "bg-loaded"
+                            );
 
-            // Stop video when it goes out of screen
-            video.pause();
+
+                        backgroundObserver
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            /*
+             Load the background slightly
+             before the user reaches it.
+            */
+
+            rootMargin:
+                "250px 0px",
+
+            threshold:
+                0.01
+        }
+    );
+
+
+deferredBackgrounds.forEach(
+    (section) => {
+
+        backgroundObserver.observe(
+            section
+        );
+
+    }
+);
+
+
+/* ================================================
+   TRUE LAZY VIDEO LOADING
+================================================ */
+
+const lazyVideos =
+    document.querySelectorAll(
+        ".lazy-video"
+    );
+
+
+const videoObserver =
+    new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    const video =
+                        entry.target;
+
+
+                    /*
+                     Load only when the video
+                     is near the viewport.
+                    */
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        if (
+                            !video.dataset.loaded &&
+                            video.dataset.src
+                        ) {
+
+                            video.src =
+                                video.dataset.src;
+
+
+                            video.dataset.loaded =
+                                "true";
+
+
+                            video.load();
+
+                        }
+
+
+                        const playPromise =
+                            video.play();
+
+
+                        if (
+                            playPromise !== undefined
+                        ) {
+
+                            playPromise.catch(
+                                () => {}
+                            );
+
+                        }
+
+                    }
+
+                    else {
+
+                        if (
+                            !video.paused
+                        ) {
+
+                            video.pause();
+
+                        }
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            /*
+             Reduced from 300px.
+             Don't start downloading
+             too early.
+            */
+
+            rootMargin:
+                "120px 0px",
+
+            threshold:
+                0.05
+        }
+    );
+
+
+lazyVideos.forEach(
+    (video) => {
+
+        videoObserver.observe(
+            video
+        );
+
+    }
+);
+
+
+/* ================================================
+   PAGE VISIBILITY
+   Pause videos when browser tab is hidden
+================================================ */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if (
+            document.hidden
+        ) {
+
+            lazyVideos.forEach(
+                (video) => {
+
+                    if (
+                        !video.paused
+                    ) {
+
+                        video.pause();
+
+                    }
+
+                }
+            );
 
         }
 
-    });
-
-}, {
-    rootMargin: '300px 0px',
-    threshold: 0.1
-});
-
-lazyVideos.forEach(video => {
-    videoObserver.observe(video);
-});
+    }
+);

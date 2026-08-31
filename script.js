@@ -1,92 +1,20 @@
 /* ================================================
    DIOD STUDIO — script.js
-   Performance Optimized
+   Stable Performance Version
 ================================================ */
-
-
-/* ================================================
-   WEDDING SCROLL EFFECT
-   RAF throttled
-================================================ */
-
-const rowLeft = document.querySelector(".row-left");
-const rowRight = document.querySelector(".row-right");
-const weddingSection = document.querySelector(".wedding-series");
-
-let scrollTicking = false;
-
-function updateWeddingParallax() {
-
-    if (
-        window.innerWidth <= 768 ||
-        !rowLeft ||
-        !rowRight ||
-        !weddingSection
-    ) {
-        scrollTicking = false;
-        return;
-    }
-
-    const rect = weddingSection.getBoundingClientRect();
-
-    /*
-       Do calculations only when the section
-       is reasonably close to the viewport.
-    */
-
-    if (
-        rect.bottom > -300 &&
-        rect.top < window.innerHeight + 300
-    ) {
-
-        const offset =
-            window.innerHeight - rect.top;
-
-        rowLeft.style.transform =
-            `translate3d(${-offset * 0.08}px,0,0)`;
-
-        rowRight.style.transform =
-            `translate3d(${offset * 0.08}px,0,0)`;
-
-    }
-
-    scrollTicking = false;
-}
-
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        if (!scrollTicking) {
-
-            requestAnimationFrame(
-                updateWeddingParallax
-            );
-
-            scrollTicking = true;
-        }
-
-    },
-    { passive: true }
-);
 
 
 /* ================================================
    CUSTOM CURSOR
 ================================================ */
 
-const cursorDot =
-    document.querySelector(".cursor-dot");
-
-const cursorRing =
-    document.querySelector(".cursor-ring");
-
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorRing = document.querySelector('.cursor-ring');
 
 if (
     cursorDot &&
     cursorRing &&
-    window.matchMedia("(pointer: fine)").matches
+    window.matchMedia('(pointer: fine)').matches
 ) {
 
     let mouseX = 0;
@@ -95,26 +23,24 @@ if (
     let ringX = 0;
     let ringY = 0;
 
+    const lerp = (a, b, t) =>
+        a + (b - a) * t;
+
 
     document.addEventListener(
-        "mousemove",
+        'mousemove',
         (e) => {
 
             mouseX = e.clientX;
             mouseY = e.clientY;
 
             cursorDot.style.transform =
-                `translate3d(${mouseX}px,${mouseY}px,0)
-                 translate(-50%,-50%)`;
+                `translate3d(${mouseX}px, ${mouseY}px, 0)
+                 translate(-50%, -50%)`;
 
         },
         { passive: true }
     );
-
-
-    const lerp =
-        (a, b, t) =>
-            a + (b - a) * t;
 
 
     function animateCursor() {
@@ -134,45 +60,32 @@ if (
             );
 
         cursorRing.style.transform =
-            `translate3d(${ringX}px,${ringY}px,0)
-             translate(-50%,-50%)`;
+            `translate3d(${ringX}px, ${ringY}px, 0)
+             translate(-50%, -50%)`;
 
         requestAnimationFrame(
             animateCursor
         );
     }
 
-
     animateCursor();
 
 
     document.querySelectorAll(
-        `
-        a,
-        button,
-        .pre-card,
-        .birthday-card,
-        .reel-card,
-        .pov-card,
-        .service-item
-        `
+        'a, button, .pre-card, .birthday-card, .reel-card, .pov-card, .service-item'
     ).forEach((el) => {
 
         el.addEventListener(
-            "mouseenter",
+            'mouseenter',
             () => {
-                cursorRing.classList.add(
-                    "hovering"
-                );
+                cursorRing.classList.add('hovering');
             }
         );
 
         el.addEventListener(
-            "mouseleave",
+            'mouseleave',
             () => {
-                cursorRing.classList.remove(
-                    "hovering"
-                );
+                cursorRing.classList.remove('hovering');
             }
         );
 
@@ -186,20 +99,22 @@ if (
 ================================================ */
 
 const nav =
-    document.querySelector("nav");
+    document.querySelector('nav');
 
 const heroSection =
-    document.querySelector(".hero");
+    document.querySelector('.hero');
 
-
-if (nav && heroSection) {
+if (
+    nav &&
+    heroSection
+) {
 
     const navObserver =
         new IntersectionObserver(
             ([entry]) => {
 
                 nav.classList.toggle(
-                    "scrolled",
+                    'scrolled',
                     !entry.isIntersecting
                 );
 
@@ -207,7 +122,7 @@ if (nav && heroSection) {
             {
                 threshold: 0,
                 rootMargin:
-                    "-80px 0px 0px 0px"
+                    '-80px 0px 0px 0px'
             }
         );
 
@@ -222,15 +137,10 @@ if (nav && heroSection) {
 ================================================ */
 
 const toggle =
-    document.querySelector(
-        ".nav-toggle"
-    );
+    document.querySelector('.nav-toggle');
 
 const mobileMenu =
-    document.querySelector(
-        ".mobile-menu"
-    );
-
+    document.querySelector('.mobile-menu');
 
 if (
     toggle &&
@@ -239,58 +149,52 @@ if (
 
     function openMenu() {
 
-        toggle.classList.add(
-            "open"
-        );
+        toggle.classList.add('open');
 
-        mobileMenu.classList.add(
-            "open"
-        );
+        mobileMenu.classList.add('open');
 
         toggle.setAttribute(
-            "aria-expanded",
-            "true"
+            'aria-expanded',
+            'true'
         );
 
         document.body.style.overflow =
-            "hidden";
+            'hidden';
     }
 
 
     function closeMenu() {
 
-        toggle.classList.remove(
-            "open"
-        );
+        toggle.classList.remove('open');
 
-        mobileMenu.classList.remove(
-            "open"
-        );
+        mobileMenu.classList.remove('open');
 
         toggle.setAttribute(
-            "aria-expanded",
-            "false"
+            'aria-expanded',
+            'false'
         );
 
         document.body.style.overflow =
-            "";
+            '';
     }
 
 
     toggle.addEventListener(
-        "click",
+        'click',
         () => {
 
             if (
-                mobileMenu.classList.contains(
-                    "open"
-                )
+                mobileMenu.classList.contains('open')
             ) {
+
                 closeMenu();
+
             }
 
             else {
+
                 openMenu();
+
             }
 
         }
@@ -298,11 +202,11 @@ if (
 
 
     mobileMenu
-        .querySelectorAll("a")
+        .querySelectorAll('a')
         .forEach((a) => {
 
             a.addEventListener(
-                "click",
+                'click',
                 closeMenu
             );
 
@@ -310,11 +214,11 @@ if (
 
 
     document.addEventListener(
-        "keydown",
+        'keydown',
         (e) => {
 
             if (
-                e.key === "Escape"
+                e.key === 'Escape'
             ) {
                 closeMenu();
             }
@@ -331,14 +235,8 @@ if (
 
 const revealEls =
     document.querySelectorAll(
-        `
-        .reveal,
-        .reveal-stagger,
-        .reveal-clip,
-        .reveal-fade
-        `
+        '.reveal, .reveal-stagger, .reveal-clip, .reveal-fade'
     );
-
 
 const revealObserver =
     new IntersectionObserver(
@@ -351,13 +249,15 @@ const revealObserver =
                         entry.isIntersecting
                     ) {
 
-                        entry.target.classList.add(
-                            "active"
-                        );
+                        entry.target
+                            .classList
+                            .add('active');
 
-                        revealObserver.unobserve(
-                            entry.target
-                        );
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+
                     }
 
                 }
@@ -367,16 +267,17 @@ const revealObserver =
         {
             threshold: 0.08,
             rootMargin:
-                "0px 0px -50px 0px"
+                '0px 0px -60px 0px'
         }
     );
 
-
 revealEls.forEach(
     (el) => {
+
         revealObserver.observe(
             el
         );
+
     }
 );
 
@@ -386,54 +287,47 @@ revealEls.forEach(
 ================================================ */
 
 document
-    .querySelectorAll(
-        ".pre-card img"
-    )
-    .forEach(
-        (img) => {
+    .querySelectorAll('.pre-card img')
+    .forEach((img) => {
 
-            const card =
-                img.closest(
-                    ".pre-card"
-                );
+        const card =
+            img.closest('.pre-card');
+
+        if (!card) return;
 
 
-            if (!card) return;
+        if (
+            img.complete &&
+            img.naturalWidth > 0
+        ) {
 
-
-            if (
-                img.complete &&
-                img.naturalWidth > 0
-            ) {
-
-                card.classList.add(
-                    "loaded"
-                );
-
-            }
-
-            else {
-
-                img.addEventListener(
-                    "load",
-                    () => {
-
-                        card.classList.add(
-                            "loaded"
-                        );
-
-                    },
-                    { once: true }
-                );
-
-            }
+            card.classList.add(
+                'loaded'
+            );
 
         }
-    );
+
+        else {
+
+            img.addEventListener(
+                'load',
+                () => {
+
+                    card.classList.add(
+                        'loaded'
+                    );
+
+                },
+                { once: true }
+            );
+
+        }
+
+    });
 
 
 /* ================================================
-   COUNT UP
+   COUNT-UP NUMBERS
 ================================================ */
 
 function countUp(el) {
@@ -444,14 +338,11 @@ function countUp(el) {
             el.textContent
         ) || 0;
 
-
     const suffix =
-        el.dataset.suffix || "";
-
+        el.dataset.suffix || '';
 
     const duration =
         1600;
-
 
     const start =
         performance.now();
@@ -462,13 +353,11 @@ function countUp(el) {
         const elapsed =
             now - start;
 
-
         const progress =
             Math.min(
                 elapsed / duration,
                 1
             );
-
 
         const eased =
             1 -
@@ -477,12 +366,10 @@ function countUp(el) {
                 4
             );
 
-
         const value =
             Math.round(
                 eased * target
             );
-
 
         el.textContent =
             value.toLocaleString() +
@@ -501,19 +388,14 @@ function countUp(el) {
 
     }
 
-
     requestAnimationFrame(
         update
     );
-
 }
 
 
 const statNums =
-    document.querySelectorAll(
-        ".count-up"
-    );
-
+    document.querySelectorAll('.count-up');
 
 const statObserver =
     new IntersectionObserver(
@@ -530,9 +412,10 @@ const statObserver =
                             entry.target
                         );
 
-                        statObserver.unobserve(
-                            entry.target
-                        );
+                        statObserver
+                            .unobserve(
+                                entry.target
+                            );
 
                     }
 
@@ -544,7 +427,6 @@ const statObserver =
             threshold: 0.5
         }
     );
-
 
 statNums.forEach(
     (el) => {
@@ -562,34 +444,29 @@ statNums.forEach(
 ================================================ */
 
 const marqueeTrack =
-    document.querySelector(
-        ".marquee-track"
-    );
-
+    document.querySelector('.marquee-track');
 
 if (marqueeTrack) {
 
     const marqueeParent =
         marqueeTrack.parentElement;
 
-
     marqueeParent.addEventListener(
-        "mouseenter",
+        'mouseenter',
         () => {
 
             marqueeTrack.style.animationPlayState =
-                "paused";
+                'paused';
 
         }
     );
 
-
     marqueeParent.addEventListener(
-        "mouseleave",
+        'mouseleave',
         () => {
 
             marqueeTrack.style.animationPlayState =
-                "running";
+                'running';
 
         }
     );
@@ -598,79 +475,11 @@ if (marqueeTrack) {
 
 
 /* ================================================
-   DEFER LARGE CSS BACKGROUND IMAGES
-================================================ */
-
-const deferredBackgrounds =
-    document.querySelectorAll(
-        ".deferred-bg"
-    );
-
-
-const backgroundObserver =
-    new IntersectionObserver(
-        (entries) => {
-
-            entries.forEach(
-                (entry) => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target
-                            .classList
-                            .add(
-                                "bg-loaded"
-                            );
-
-
-                        backgroundObserver
-                            .unobserve(
-                                entry.target
-                            );
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            /*
-             Load the background slightly
-             before the user reaches it.
-            */
-
-            rootMargin:
-                "250px 0px",
-
-            threshold:
-                0.01
-        }
-    );
-
-
-deferredBackgrounds.forEach(
-    (section) => {
-
-        backgroundObserver.observe(
-            section
-        );
-
-    }
-);
-
-
-/* ================================================
    TRUE LAZY VIDEO LOADING
 ================================================ */
 
 const lazyVideos =
-    document.querySelectorAll(
-        ".lazy-video"
-    );
-
+    document.querySelectorAll('.lazy-video');
 
 const videoObserver =
     new IntersectionObserver(
@@ -682,11 +491,6 @@ const videoObserver =
                     const video =
                         entry.target;
 
-
-                    /*
-                     Load only when the video
-                     is near the viewport.
-                    */
 
                     if (
                         entry.isIntersecting
@@ -700,10 +504,8 @@ const videoObserver =
                             video.src =
                                 video.dataset.src;
 
-
                             video.dataset.loaded =
-                                "true";
-
+                                'true';
 
                             video.load();
 
@@ -743,20 +545,13 @@ const videoObserver =
 
         },
         {
-            /*
-             Reduced from 300px.
-             Don't start downloading
-             too early.
-            */
-
             rootMargin:
-                "120px 0px",
+                '120px 0px',
 
             threshold:
                 0.05
         }
     );
-
 
 lazyVideos.forEach(
     (video) => {
@@ -770,12 +565,11 @@ lazyVideos.forEach(
 
 
 /* ================================================
-   PAGE VISIBILITY
-   Pause videos when browser tab is hidden
+   PAUSE VIDEOS WHEN TAB IS HIDDEN
 ================================================ */
 
 document.addEventListener(
-    "visibilitychange",
+    'visibilitychange',
     () => {
 
         if (

@@ -15,13 +15,13 @@
 
     <title>DIOD STUDIO | Wedding & Birthday Photography</title>
 
-    <!-- Hero image is the LCP candidate -->
+    <!-- Hero -->
     <link rel="preload"
           as="image"
           href="images/hero.webp"
           fetchpriority="high">
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -37,11 +37,13 @@
           href="style.css">
 </head>
 
+
 <body>
 
 <!-- CUSTOM CURSOR -->
 <div class="cursor-dot" aria-hidden="true"></div>
 <div class="cursor-ring" aria-hidden="true"></div>
+
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu"
@@ -49,15 +51,25 @@
      aria-label="Navigation menu">
 
     <a href="index.html">Home</a>
-    <a href="./gallery/gallery/gallery.html">Gallery</a>
-    <a href="#services">Services</a>
-    <a href="./studio-contact/contact.html">Contact</a>
+
+    <a href="./gallery/gallery/gallery.html">
+        Gallery
+    </a>
+
+    <a href="#services">
+        Services
+    </a>
+
+    <a href="./studio-contact/contact.html">
+        Contact
+    </a>
 
     <a href="./studio-contact/contact.html#contactForm"
        class="nav-cta">
         Book Now
     </a>
 </div>
+
 
 <!-- HERO -->
 <section class="hero">
@@ -77,21 +89,42 @@
             </span>
         </a>
 
-        <button
-            class="nav-toggle"
-            aria-label="Toggle navigation"
-            aria-expanded="false">
+
+        <button class="nav-toggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
 
             <span></span>
             <span></span>
             <span></span>
         </button>
 
+
         <ul>
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./gallery/gallery/gallery.html">Gallery</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="./studio-contact/contact.html">Contact</a></li>
+
+            <li>
+                <a href="./index.html">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="./gallery/gallery/gallery.html">
+                    Gallery
+                </a>
+            </li>
+
+            <li>
+                <a href="#services">
+                    Services
+                </a>
+            </li>
+
+            <li>
+                <a href="./studio-contact/contact.html">
+                    Contact
+                </a>
+            </li>
 
             <li>
                 <a href="./studio-contact/contact.html#contactForm"
@@ -99,9 +132,11 @@
                     Book Now
                 </a>
             </li>
+
         </ul>
 
     </nav>
+
 
     <div class="hero-content">
 
@@ -121,6 +156,7 @@
             </em>
         </h1>
 
+
         <div class="hero-cta">
 
             <a href="./gallery/gallery/gallery.html"
@@ -138,6 +174,7 @@
     </div>
 
 </section>
+
 
 <!-- MARQUEE -->
 <div class="marquee-wrap"
@@ -178,12 +215,14 @@
     </div>
 </div>
 
+
 <!-- PORTRAIT -->
 <section class="prewedding">
 
     <div class="prewedding-header">
 
         <div>
+
             <span class="section-eyebrow">
                 Portrait Shoot
             </span>
@@ -192,6 +231,7 @@
                 Elegant portraits that capture your personality
                 with style, confidence, and timeless beauty.
             </h2>
+
         </div>
 
         <a href="./gallery/gallery/gallery.html"
@@ -201,130 +241,333 @@
 
     </div>
 
+
     <div class="pre-grid">
 
+        <!-- no responsive variant -->
         <div class="pre-card">
-            <img src="images/event1.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img src="images/event1.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/event3.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/event2.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/event3.webp"
+                srcset="
+                    images/event3-320.webp 320w,
+                    images/event3-640.webp 640w,
+                    images/event3-960.webp 960w,
+                    images/event3.webp 872w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
+
+        <!-- no responsive variant -->
         <div class="pre-card">
-            <img src="images/grid-26.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img src="images/event2.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-27.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-28.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/grid-26.webp"
+                srcset="
+                    images/grid-26-320.webp 320w,
+                    images/grid-26-640.webp 640w,
+                    images/grid-26-960.webp 960w,
+                    images/grid-26.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-06.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-02.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/grid-27.webp"
+                srcset="
+                    images/grid-27-320.webp 320w,
+                    images/grid-27-640.webp 640w,
+                    images/grid-27-960.webp 960w,
+                    images/grid-27.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-03.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-04.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/grid-28.webp"
+                srcset="
+                    images/grid-28-320.webp 320w,
+                    images/grid-28-640.webp 640w,
+                    images/grid-28-960.webp 960w,
+                    images/grid-28.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-01.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-05.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/grid-06.webp"
+                srcset="
+                    images/grid-06-320.webp 320w,
+                    images/grid-06-640.webp 640w,
+                    images/grid-06-960.webp 960w,
+                    images/grid-06.webp 1899w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-07.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-12.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img src="images/grid-02.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-09.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-10.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/grid-03.webp"
+                srcset="
+                    images/grid-03-320.webp 320w,
+                    images/grid-03-640.webp 640w,
+                    images/grid-03-960.webp 960w,
+                    images/grid-03.webp 1350w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-11.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-23.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/grid-04.webp"
+                srcset="
+                    images/grid-04-320.webp 320w,
+                    images/grid-04-640.webp 640w,
+                    images/grid-04-960.webp 960w,
+                    images/grid-04.webp 2160w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-13.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-14.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/grid-01.webp"
+                srcset="
+                    images/grid-01-320.webp 320w,
+                    images/grid-01-640.webp 640w,
+                    images/grid-01-960.webp 960w,
+                    images/grid-01.webp 2700w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-15.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-17.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img src="images/grid-05.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/grid-24.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/grid-25.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img src="images/grid-07.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-12.webp"
+                srcset="
+                    images/grid-12-320.webp 320w,
+                    images/grid-12-640.webp 640w,
+                    images/grid-12-960.webp 960w,
+                    images/grid-12.webp 3168w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-09.webp"
+                srcset="
+                    images/grid-09-320.webp 320w,
+                    images/grid-09-640.webp 640w,
+                    images/grid-09-960.webp 960w,
+                    images/grid-09.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-10.webp"
+                srcset="
+                    images/grid-10-320.webp 320w,
+                    images/grid-10-640.webp 640w,
+                    images/grid-10-960.webp 960w,
+                    images/grid-10.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-11.webp"
+                srcset="
+                    images/grid-11-320.webp 320w,
+                    images/grid-11-640.webp 640w,
+                    images/grid-11-960.webp 960w,
+                    images/grid-11.webp 2700w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-23.webp"
+                srcset="
+                    images/grid-23-320.webp 320w,
+                    images/grid-23-640.webp 640w,
+                    images/grid-23-960.webp 960w,
+                    images/grid-23.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-13.webp"
+                srcset="
+                    images/grid-13-320.webp 320w,
+                    images/grid-13-640.webp 640w,
+                    images/grid-13-960.webp 960w,
+                    images/grid-13.webp 2700w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-14.webp"
+                srcset="
+                    images/grid-14-320.webp 320w,
+                    images/grid-14-640.webp 640w,
+                    images/grid-14-960.webp 960w,
+                    images/grid-14.webp 2700w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img src="images/grid-15.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img src="images/grid-17.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/grid-24.webp"
+                srcset="
+                    images/grid-24-320.webp 320w,
+                    images/grid-24-640.webp 640w,
+                    images/grid-24-960.webp 960w,
+                    images/grid-24.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img src="images/grid-25.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
         </div>
 
     </div>
 </section>
+
 
 <!-- TIMELESS -->
 <section class="timeless reveal">
@@ -332,11 +575,14 @@
     <div class="timeless-content">
 
         <div class="timeless-main-img reveal">
+
             <img src="images/pre5.webp"
                  alt="Cinematic wedding film"
                  loading="lazy"
                  decoding="async">
+
         </div>
+
 
         <div class="timeless-text reveal">
 
@@ -354,18 +600,24 @@
                 your emotions, traditions, and unforgettable
                 moments that you can relive forever.
             </p>
+
         </div>
 
+
         <div class="timeless-image reveal">
+
             <img src="images/timeless2.webp"
                  alt="Wedding cinematic detail"
                  loading="lazy"
                  decoding="async">
+
         </div>
+
 
         <div class="timeless-stats reveal">
 
             <div class="stat-box">
+
                 <span class="stat-num count-up"
                       data-target="50"
                       data-suffix="+">
@@ -377,7 +629,9 @@
                 </span>
             </div>
 
+
             <div class="stat-box">
+
                 <span class="stat-num count-up"
                       data-target="7"
                       data-suffix=" yrs">
@@ -390,8 +644,10 @@
             </div>
 
         </div>
+
     </div>
 </section>
+
 
 <!-- WEDDING SERIES -->
 <section class="wedding-series reveal">
@@ -411,6 +667,7 @@
 
         </div>
 
+
         <a href="./gallery/gallery/gallery.html"
            class="btn-outline"
            style="flex-shrink:0;">
@@ -419,6 +676,7 @@
 
     </div>
 
+
     <div class="wedding-parallax">
 
         <div class="parallax-row row-left">
@@ -426,130 +684,299 @@
             <div class="gallery-card">
                 <img src="images/wedding2.webp"
                      alt="Wedding photography 1"
-                     loading="lazy" decoding="async">
+                     loading="lazy"
+                     decoding="async">
             </div>
 
-            <div class="gallery-card">
-                <img src="images/wedding1.webp"
-                     alt="Wedding photography 2"
-                     loading="lazy" decoding="async">
-            </div>
 
             <div class="gallery-card">
-                <img src="images/wedding10.webp"
-                     alt="Wedding photography 3"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding1.webp"
+                    srcset="
+                        images/wedding1-320.webp 320w,
+                        images/wedding1-640.webp 640w,
+                        images/wedding1-960.webp 960w,
+                        images/wedding1.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 2"
+                    loading="lazy"
+                    decoding="async">
             </div>
 
+
             <div class="gallery-card">
-                <img src="images/wedding12.webp"
-                     alt="Wedding photography 4"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding10.webp"
+                    srcset="
+                        images/wedding10-320.webp 320w,
+                        images/wedding10-640.webp 640w,
+                        images/wedding10-960.webp 960w,
+                        images/wedding10.webp 1855w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 3"
+                    loading="lazy"
+                    decoding="async">
             </div>
+
+
+            <div class="gallery-card">
+                <img
+                    src="images/wedding12.webp"
+                    srcset="
+                        images/wedding12-320.webp 320w,
+                        images/wedding12-640.webp 640w,
+                        images/wedding12-960.webp 960w,
+                        images/wedding12.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 4"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+
 
             <div class="gallery-card">
                 <img src="images/wedding9.webp"
                      alt="Wedding photography 5"
-                     loading="lazy" decoding="async">
+                     loading="lazy"
+                     decoding="async">
             </div>
 
-            <div class="gallery-card">
-                <img src="images/wedding13.webp"
-                     alt="Wedding photography 6"
-                     loading="lazy" decoding="async">
-            </div>
 
             <div class="gallery-card">
-                <img src="images/wedding27.webp"
-                     alt="Wedding photography 7"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding13.webp"
+                    srcset="
+                        images/wedding13-320.webp 320w,
+                        images/wedding13-640.webp 640w,
+                        images/wedding13-960.webp 960w,
+                        images/wedding13.webp 1855w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 6"
+                    loading="lazy"
+                    decoding="async">
             </div>
 
-            <div class="gallery-card">
-                <img src="images/wedding24.webp"
-                     alt="Wedding photography 8"
-                     loading="lazy" decoding="async">
-            </div>
 
             <div class="gallery-card">
-                <img src="images/wedding25.webp"
-                     alt="Wedding photography 9"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding27.webp"
+                    srcset="
+                        images/wedding27-320.webp 320w,
+                        images/wedding27-640.webp 640w,
+                        images/wedding27-960.webp 960w,
+                        images/wedding27.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 7"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+
+
+            <div class="gallery-card">
+                <img
+                    src="images/wedding24.webp"
+                    srcset="
+                        images/wedding24-320.webp 320w,
+                        images/wedding24-640.webp 640w,
+                        images/wedding24-960.webp 960w,
+                        images/wedding24.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 8"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+
+
+            <div class="gallery-card">
+                <img
+                    src="images/wedding25.webp"
+                    srcset="
+                        images/wedding25-320.webp 320w,
+                        images/wedding25-640.webp 640w,
+                        images/wedding25-960.webp 960w,
+                        images/wedding25.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 9"
+                    loading="lazy"
+                    decoding="async">
             </div>
 
         </div>
+
 
         <div class="parallax-row row-right">
 
             <div class="gallery-card">
-                <img src="images/wedding6.webp"
-                     alt="Wedding photography 10"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding6.webp"
+                    srcset="
+                        images/wedding6-320.webp 320w,
+                        images/wedding6-640.webp 640w,
+                        images/wedding6-960.webp 960w,
+                        images/wedding6.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 10"
+                    loading="lazy"
+                    decoding="async">
             </div>
 
-            <div class="gallery-card">
-                <img src="images/wedding5.webp"
-                     alt="Wedding photography 11"
-                     loading="lazy" decoding="async">
-            </div>
 
             <div class="gallery-card">
-                <img src="images/wedding11.webp"
-                     alt="Wedding photography 12"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding5.webp"
+                    srcset="
+                        images/wedding5-320.webp 320w,
+                        images/wedding5-640.webp 640w,
+                        images/wedding5-960.webp 960w,
+                        images/wedding5.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 11"
+                    loading="lazy"
+                    decoding="async">
             </div>
 
-            <div class="gallery-card">
-                <img src="images/wedding15.webp"
-                     alt="Wedding photography 13"
-                     loading="lazy" decoding="async">
-            </div>
 
             <div class="gallery-card">
-                <img src="images/wedding23.webp"
-                     alt="Wedding photography 14"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding11.webp"
+                    srcset="
+                        images/wedding11-320.webp 320w,
+                        images/wedding11-640.webp 640w,
+                        images/wedding11-960.webp 960w,
+                        images/wedding11.webp 1855w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 12"
+                    loading="lazy"
+                    decoding="async">
             </div>
 
+
             <div class="gallery-card">
-                <img src="images/wedding29.webp"
-                     alt="Wedding photography 15"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding15.webp"
+                    srcset="
+                        images/wedding15-320.webp 320w,
+                        images/wedding15-640.webp 640w,
+                        images/wedding15-960.webp 960w,
+                        images/wedding15.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 13"
+                    loading="lazy"
+                    decoding="async">
             </div>
+
+
+            <div class="gallery-card">
+                <img
+                    src="images/wedding23.webp"
+                    srcset="
+                        images/wedding23-320.webp 320w,
+                        images/wedding23-640.webp 640w,
+                        images/wedding23-960.webp 960w,
+                        images/wedding23.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 14"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+
+
+            <div class="gallery-card">
+                <img
+                    src="images/wedding29.webp"
+                    srcset="
+                        images/wedding29-320.webp 320w,
+                        images/wedding29-640.webp 640w,
+                        images/wedding29-960.webp 960w,
+                        images/wedding29.webp 1085w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 15"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+
 
             <div class="gallery-card">
                 <img src="images/wedding26.webp"
                      alt="Wedding photography 16"
-                     loading="lazy" decoding="async">
+                     loading="lazy"
+                     decoding="async">
             </div>
 
-            <div class="gallery-card">
-                <img src="images/wedding17.webp"
-                     alt="Wedding photography 17"
-                     loading="lazy" decoding="async">
-            </div>
 
             <div class="gallery-card">
-                <img src="images/wedding20.webp"
-                     alt="Wedding photography 18"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding17.webp"
+                    srcset="
+                        images/wedding17-320.webp 320w,
+                        images/wedding17-640.webp 640w,
+                        images/wedding17-960.webp 960w,
+                        images/wedding17.webp 1855w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 17"
+                    loading="lazy"
+                    decoding="async">
             </div>
 
+
             <div class="gallery-card">
-                <img src="images/wedding21.webp"
-                     alt="Wedding photography 19"
-                     loading="lazy" decoding="async">
+                <img
+                    src="images/wedding20.webp"
+                    srcset="
+                        images/wedding20-320.webp 320w,
+                        images/wedding20-640.webp 640w,
+                        images/wedding20-960.webp 960w,
+                        images/wedding20.webp 1855w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 18"
+                    loading="lazy"
+                    decoding="async">
             </div>
+
+
+            <div class="gallery-card">
+                <img
+                    src="images/wedding21.webp"
+                    srcset="
+                        images/wedding21-320.webp 320w,
+                        images/wedding21-640.webp 640w,
+                        images/wedding21-960.webp 960w,
+                        images/wedding21.webp 1855w
+                    "
+                    sizes="(max-width:768px) 140px, 300px"
+                    alt="Wedding photography 19"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+
 
             <div class="gallery-card">
                 <img src="images/wedding22.webp"
                      alt="Wedding photography 20"
-                     loading="lazy" decoding="async">
+                     loading="lazy"
+                     decoding="async">
             </div>
 
         </div>
+
     </div>
 </section>
+
 
 <!-- FESTIVALS -->
 <section class="prewedding">
@@ -557,6 +984,7 @@
     <div class="prewedding-header">
 
         <div>
+
             <span class="section-eyebrow">
                 Festivals
             </span>
@@ -565,78 +993,189 @@
                 Preserving the joy, culture, and unforgettable
                 moments of every festival.
             </h2>
+
         </div>
 
         <a href="./gallery/gallery/gallery.html"
            class="btn-outline">
             See Full Gallery
         </a>
+
     </div>
+
 
     <div class="pre-grid">
 
         <div class="pre-card">
-            <img src="images/fest1.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/fest1.webp"
+                srcset="
+                    images/fest1-320.webp 320w,
+                    images/fest1-640.webp 640w,
+                    images/fest1-960.webp 960w,
+                    images/fest1.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/fest2.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/fest3.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/fest2.webp"
+                srcset="
+                    images/fest2-320.webp 320w,
+                    images/fest2-640.webp 640w,
+                    images/fest2-960.webp 960w,
+                    images/fest2.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/fest4.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/fest5.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img src="images/fest3.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/fest13.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/fest7.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/fest4.webp"
+                srcset="
+                    images/fest4-320.webp 320w,
+                    images/fest4-640.webp 640w,
+                    images/fest4-960.webp 960w,
+                    images/fest4.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/fest8.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/fest9.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/fest5.webp"
+                srcset="
+                    images/fest5-320.webp 320w,
+                    images/fest5-640.webp 640w,
+                    images/fest5-960.webp 960w,
+                    images/fest5.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
-        <div class="pre-card">
-            <img src="images/fest10.webp" alt=""
-                 loading="lazy" decoding="async">
-        </div>
 
         <div class="pre-card">
-            <img src="images/fest11.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img src="images/fest13.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
         </div>
 
+
         <div class="pre-card">
-            <img src="images/fest12.webp" alt=""
-                 loading="lazy" decoding="async">
+            <img
+                src="images/fest7.webp"
+                srcset="
+                    images/fest7-320.webp 320w,
+                    images/fest7-640.webp 640w,
+                    images/fest7-960.webp 960w,
+                    images/fest7.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/fest8.webp"
+                srcset="
+                    images/fest8-320.webp 320w,
+                    images/fest8-640.webp 640w,
+                    images/fest8-960.webp 960w,
+                    images/fest8.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/fest9.webp"
+                srcset="
+                    images/fest9-320.webp 320w,
+                    images/fest9-640.webp 640w,
+                    images/fest9-960.webp 960w,
+                    images/fest9.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img src="images/fest10.webp"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/fest11.webp"
+                srcset="
+                    images/fest11-320.webp 320w,
+                    images/fest11-640.webp 640w,
+                    images/fest11-960.webp 960w,
+                    images/fest11.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
+        </div>
+
+
+        <div class="pre-card">
+            <img
+                src="images/fest12.webp"
+                srcset="
+                    images/fest12-320.webp 320w,
+                    images/fest12-640.webp 640w,
+                    images/fest12-960.webp 960w,
+                    images/fest12.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async">
         </div>
 
     </div>
 </section>
+
 
 <!-- SERVICES -->
 <section id="services"
@@ -656,17 +1195,33 @@
                 Preserving memories.
             </h2>
 
+
             <div class="service-list reveal-stagger">
 
-                <div class="service-item">Photography</div>
-                <div class="service-item">Videography</div>
-                <div class="service-item">Album</div>
-                <div class="service-item">Drone</div>
+                <div class="service-item">
+                    Photography
+                </div>
+
+                <div class="service-item">
+                    Videography
+                </div>
+
+                <div class="service-item">
+                    Album
+                </div>
+
+                <div class="service-item">
+                    Drone
+                </div>
 
             </div>
+
         </div>
+
     </div>
+
 </section>
+
 
 <!-- POV -->
 <section class="pov reveal">
@@ -674,6 +1229,7 @@
     <div class="pov-header">
 
         <div>
+
             <span class="section-eyebrow">
                 Stories In Motion
             </span>
@@ -684,13 +1240,16 @@
                 <br>
                 moments that stay forever.
             </h2>
+
         </div>
 
     </div>
 
+
     <div class="reels-grid reveal-stagger">
 
         <div class="reel-card">
+
             <video class="lazy-video"
                    muted
                    loop
@@ -698,9 +1257,12 @@
                    preload="none"
                    data-src="videos/video-1.mp4">
             </video>
+
         </div>
 
+
         <div class="reel-card">
+
             <video class="lazy-video"
                    muted
                    loop
@@ -708,9 +1270,12 @@
                    preload="none"
                    data-src="videos/video-3.mp4">
             </video>
+
         </div>
 
+
         <div class="reel-card">
+
             <video class="lazy-video"
                    muted
                    loop
@@ -718,46 +1283,86 @@
                    preload="none"
                    data-src="videos/video-2.mp4">
             </video>
+
         </div>
 
     </div>
+
 
     <div class="pov-text reveal">
 
         <h1 class="tamil-txt2">
+
              
+
             <br>
+
              
              
+
         </h1>
 
     </div>
 
+
     <div class="pov-grid reveal-stagger">
 
+        <!-- do not use broken 640 version -->
         <div class="pov-card">
-            <img src="images/pov04.webp"
-                 alt="POV moment 1"
-                 loading="lazy"
-                 decoding="async">
+
+            <img
+                src="images/pov04.webp"
+                srcset="
+                    images/pov04-320.webp 320w,
+                    images/pov04.webp 1240w
+                "
+                sizes="(max-width:768px) 100vw, 25vw"
+                alt="POV moment 1"
+                loading="lazy"
+                decoding="async">
+
         </div>
 
-        <div class="pov-card">
-            <img src="images/pov2.webp"
-                 alt="POV moment 2"
-                 loading="lazy"
-                 decoding="async">
-        </div>
 
         <div class="pov-card">
-            <img src="images/pov05.webp"
-                 alt="POV moment 3"
-                 loading="lazy"
-                 decoding="async">
+
+            <img
+                src="images/pov2.webp"
+                srcset="
+                    images/pov2-320.webp 320w,
+                    images/pov2-640.webp 640w,
+                    images/pov2-960.webp 960w,
+                    images/pov2.webp 1240w
+                "
+                sizes="(max-width:768px) 100vw, 40vw"
+                alt="POV moment 2"
+                loading="lazy"
+                decoding="async">
+
+        </div>
+
+
+        <div class="pov-card">
+
+            <img
+                src="images/pov05.webp"
+                srcset="
+                    images/pov05-320.webp 320w,
+                    images/pov05-640.webp 640w,
+                    images/pov05-960.webp 960w,
+                    images/pov05.webp 1240w
+                "
+                sizes="(max-width:768px) 100vw, 25vw"
+                alt="POV moment 3"
+                loading="lazy"
+                decoding="async">
+
         </div>
 
     </div>
+
 </section>
+
 
 <!-- BIRTHDAY -->
 <section class="birthday reveal">
@@ -775,31 +1380,58 @@
 
     </div>
 
+
     <div class="birthday-grid reveal-stagger">
 
         <div class="birthday-card">
+
             <img src="images/birthday1.webp"
                  alt="Birthday celebration"
                  loading="lazy"
                  decoding="async">
+
         </div>
 
-        <div class="birthday-card">
-            <img src="images/birthday2.webp"
-                 alt="Birthday joy"
-                 loading="lazy"
-                 decoding="async">
-        </div>
 
         <div class="birthday-card">
-            <img src="images/birthday3.webp"
-                 alt="Birthday memory"
-                 loading="lazy"
-                 decoding="async">
+
+            <img
+                src="images/birthday2.webp"
+                srcset="
+                    images/birthday2-320.webp 320w,
+                    images/birthday2-640.webp 640w,
+                    images/birthday2-960.webp 960w,
+                    images/birthday2.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt="Birthday joy"
+                loading="lazy"
+                decoding="async">
+
+        </div>
+
+
+        <div class="birthday-card">
+
+            <img
+                src="images/birthday3.webp"
+                srcset="
+                    images/birthday3-320.webp 320w,
+                    images/birthday3-640.webp 640w,
+                    images/birthday3-960.webp 960w,
+                    images/birthday3.webp 1240w
+                "
+                sizes="(max-width:768px) 31vw, 33vw"
+                alt="Birthday memory"
+                loading="lazy"
+                decoding="async">
+
         </div>
 
     </div>
+
 </section>
+
 
 <!-- FOOTER -->
 <footer class="footer-hero reveal">
@@ -813,67 +1445,106 @@
                 Get in Touch
             </span>
 
+
             <h2>
+
                 Every Frame
+
                 <br>
-                <em>Deserves a Music.</em>
+
+                <em>
+                    Deserves a Music.
+                </em>
+
             </h2>
 
+
             <p>
+
                 DIOD - The Wedding Company
+
                 <br>
+
                 Merging passion with precision
+
             </p>
+
 
             <a href="./studio-contact/contact.html#contactForm"
                class="footer-book-btn">
                 Book Your Date
             </a>
 
+
             <div class="footer-divider"></div>
 
         </div>
+
 
         <div>
 
             <div class="footer-bottom">
 
                 <div class="footer-logo">
+
                     <span>DIO</span>
                     <span class="footer-flip-d">D</span>
-                    <span class="footer-studio-text">STUDIO</span>
+
+                    <span class="footer-studio-text">
+                        STUDIO
+                    </span>
+
                 </div>
 
+
                 <div class="footer-contact">
+
                     diod.dharsh24@gmail.com
                     &nbsp;·&nbsp;
                     +91 9566635646
+
                 </div>
+
 
                 <div class="footer-socials">
 
-                    <a href="https://www.instagram.com/stories_by_diod?igsh=MTI3ODd1ZXYwaWoxMg=="
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <a
+                        href="https://www.instagram.com/stories_by_diod?igsh=MTI3ODd1ZXYwaWoxMg=="
+                        target="_blank"
+                        rel="noopener noreferrer">
                         Instagram
                     </a>
 
-                    <a href="#">YouTube</a>
-                    <a href="#">WhatsApp</a>
+                    <a href="#">
+                        YouTube
+                    </a>
+
+                    <a href="#">
+                        WhatsApp
+                    </a>
 
                 </div>
+
             </div>
 
+
             <div class="footer-credit">
+
                 <p>
                     Designed &amp; Developed by
-                    <span>Fusionix Technologies</span>
+                    <span>
+                        Fusionix Technologies
+                    </span>
                 </p>
+
             </div>
 
         </div>
+
     </div>
+
 </footer>
+
 
 <script src="script.js"></script>
 

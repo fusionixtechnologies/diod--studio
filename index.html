@@ -17,7 +17,7 @@
 
 
     <!-- =====================================================
-         HERO — HIGHEST PRIORITY
+         HERO LCP — HIGHEST PRIORITY
          ===================================================== -->
 
     <link rel="preload"
@@ -107,14 +107,17 @@
 
 <section class="hero">
 
-    <!--
-        Keep the existing hero structure.
-        style.css already controls hero.webp.
-
-        hero.webp is preloaded in <head> with HIGH priority.
-    -->
-
-    <div class="hero-bg"></div>
+    <!-- LCP image is declared directly in HTML so the browser can
+         discover, prioritise and paint it as early as possible. -->
+    <div class="hero-bg">
+        <img
+            class="hero-bg-img"
+            src="images/hero.webp"
+            alt=""
+            loading="eager"
+            fetchpriority="high"
+            aria-hidden="true">
+    </div>
 
 
     <nav aria-label="Main navigation">
@@ -1792,7 +1795,8 @@
      ========================================================= -->
 
 <section id="services"
-         class="services reveal">
+         class="services reveal"
+         data-lazy-bg>
 
     <div class="services-overlay">
 
@@ -2129,7 +2133,8 @@
      FOOTER
      ========================================================= -->
 
-<footer class="footer-hero reveal">
+<footer class="footer-hero reveal"
+        data-lazy-bg>
 
     <div class="footer-overlay">
 
@@ -2458,6 +2463,44 @@
 
 })();
 
+</script>
+
+
+<!-- =========================================================
+     LAZY CSS BACKGROUNDS
+     Loads heavy Services/Footer background images only when
+     the user is approaching those sections.
+     ========================================================= -->
+
+<script>
+(function () {
+    "use strict";
+
+    const sections = document.querySelectorAll("[data-lazy-bg]");
+
+    if (!sections.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+        sections.forEach((section) => section.classList.add("bg-loaded"));
+        return;
+    }
+
+    const bgObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("bg-loaded");
+                observer.unobserve(entry.target);
+            });
+        },
+        {
+            rootMargin: "700px 0px",
+            threshold: 0.01
+        }
+    );
+
+    sections.forEach((section) => bgObserver.observe(section));
+})();
 </script>
 
 

@@ -759,6 +759,9 @@ nav ul a:hover::after {
     gap: 20px;
     width: max-content;
     will-change: transform;
+
+    /* Replaced with the exact measured width by JavaScript. */
+    --loop-distance: 50%;
 }
 
 .row-left {
@@ -800,6 +803,12 @@ nav ul a:hover::after {
     animation-play-state: running;
 }
 
+/* Keep the continuously moving rows painted smoothly on mobile. */
+.wedding-series.wedding-ready .parallax-row {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
 .gallery-card img.wedding-lazy {
     opacity: 0;
 }
@@ -812,13 +821,23 @@ nav ul a:hover::after {
 }
 
 @keyframes moveLeft {
-    from { transform: translate3d(0,0,0); }
-    to { transform: translate3d(-50%,0,0); }
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(calc(-1 * var(--loop-distance)), 0, 0);
+    }
 }
 
 @keyframes moveRight {
-    from { transform: translate3d(-50%,0,0); }
-    to { transform: translate3d(0,0,0); }
+    from {
+        transform: translate3d(calc(-1 * var(--loop-distance)), 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
 }
 
 /* ================================================

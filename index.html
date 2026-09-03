@@ -2412,10 +2412,14 @@
 
 
 <!-- =========================================================
-     WEDDING ANIMATION IMAGE PRELOADER
-     iOS / WhatsApp in-app browsers can skip native lazy images
-     inside continuously transformed rows. We load all wedding
-     row images before the animation reaches the viewport.
+     WEDDING SEAMLESS LOOP + RELIABLE IMAGE LOADER
+
+     - Loads wedding images before the section reaches viewport
+     - Waits for all images to finish (no 4.5s forced start)
+     - Retries failed images once
+     - Removes truly failed cards so no black/empty card remains
+     - Duplicates each row after load so animation loops forever
+       without a black gap at the end
      ========================================================= -->
 
 <script>
@@ -2425,62 +2429,158 @@
     const section = document.querySelector(".wedding-series");
     if (!section) return;
 
+    const rows = Array.from(
+        section.querySelectorAll(".parallax-row")
+    );
+
     const images = Array.from(
         section.querySelectorAll("img.wedding-lazy[data-src]")
     );
 
-    if (!images.length) {
-        section.classList.add("wedding-ready");
-        return;
-    }
-
     let started = false;
 
-    function loadWeddingImages() {
-        if (started) return;
-        started = true;
+    function loadOneImage(img) {
+        return new Promise((resolve) => {
+            const source = img.dataset.src;
+            const sourceSet = img.dataset.srcset || "";
+            let retryCount = 0;
+            let settled = false;
 
-        let completed = 0;
-
-        const finishOne = (img) => {
-            if (img.dataset.weddingDone === "true") return;
-
-            img.dataset.weddingDone = "true";
-            img.classList.add("wedding-loaded");
-            completed += 1;
-
-            if (completed >= images.length) {
-                section.classList.add("wedding-ready");
-            }
-        };
-
-        images.forEach((img) => {
-            const onDone = () => finishOne(img);
-
-            img.addEventListener("load", onDone, { once: true });
-            img.addEventListener("error", onDone, { once: true });
-
-            if (img.dataset.srcset) {
-                img.srcset = img.dataset.srcset;
+            function cleanup() {
+                img.removeEventListener("load", handleLoad);
+                img.removeEventListener("error", handleError);
             }
 
-            img.src = img.dataset.src;
+            function finish(success) {
+                if (settled) return;
+                settled = true;
+                cleanup();
+
+                if (success) {
+                    img.classList.add("wedding-loaded");
+                    img.dataset.weddingDone = "true";
+                } else {
+                    /* Never leave an empty black card in the strip. */
+                    const card = img.closest(".gallery-card");
+                    if (card) card.remove();
+                }
+
+                resolve(success);
+            }
+
+            function handleLoad() {
+                if (img.naturalWidth > 0) {
+                    finish(true);
+                } else {
+                    handleError();
+                }
+            }
+
+            function handleError() {
+                if (settled) return;
+
+                if (retryCount < 1) {
+                    retryCount += 1;
+
+                    /* One retry helps on weak LTE / in-app browsers. */
+                    window.setTimeout(() => {
+                        img.removeAttribute("src");
+                        img.removeAttribute("srcset");
+
+                        requestAnimationFrame(() => {
+                            if (sourceSet) img.srcset = sourceSet;
+                            img.src = source;
+                        });
+                    }, 250);
+
+                    return;
+                }
+
+                finish(false);
+            }
+
+            img.addEventListener("load", handleLoad);
+            img.addEventListener("error", handleError);
+
+            /* Give nearby wedding assets normal priority once loading begins. */
+            img.fetchPriority = "auto";
+
+            if (sourceSet) {
+                img.srcset = sourceSet;
+            }
+
+            img.src = source;
 
             img.removeAttribute("data-src");
             img.removeAttribute("data-srcset");
 
-            if (img.complete && img.naturalWidth > 0) {
-                finishOne(img);
+            if (img.complete) {
+                if (img.naturalWidth > 0) {
+                    finish(true);
+                } else if (img.currentSrc || img.src) {
+                    handleError();
+                }
             }
         });
+    }
 
-        /*
-         * Fallback: never leave the animation paused because
-         * one slow/broken image failed to report completion.
-         */
-        window.setTimeout(() => {
-            section.classList.add("wedding-ready");
-        }, 4500);
+    function buildSeamlessLoop() {
+        rows.forEach((row) => {
+            if (row.dataset.loopBuilt === "true") return;
+
+            const originalCards = Array.from(row.children);
+            if (!originalCards.length) return;
+
+            /*
+             * Measure exact distance from the first card to where the
+             * duplicated first card will begin. This avoids a tiny jump
+             * caused by flex gap when using a simple translateX(-50%).
+             */
+            const styles = getComputedStyle(row);
+            const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+
+            const first = originalCards[0];
+            const last = originalCards[originalCards.length - 1];
+
+            const sequenceWidth =
+                (last.offsetLeft + last.offsetWidth - first.offsetLeft) + gap;
+
+            originalCards.forEach((card) => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute("aria-hidden", "true");
+
+                clone.querySelectorAll("img").forEach((cloneImg) => {
+                    cloneImg.loading = "eager";
+                    cloneImg.decoding = "async";
+                });
+
+                row.appendChild(clone);
+            });
+
+            row.style.setProperty(
+                "--loop-distance",
+                sequenceWidth + "px"
+            );
+
+            row.dataset.loopBuilt = "true";
+        });
+    }
+
+    async function loadWeddingImages() {
+        if (started) return;
+        started = true;
+
+        if (images.length) {
+            await Promise.all(images.map(loadOneImage));
+        }
+
+        /* Wait one frame so layout measurements include removed failed cards. */
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                buildSeamlessLoop();
+                section.classList.add("wedding-ready");
+            });
+        });
     }
 
     if (!("IntersectionObserver" in window)) {
@@ -2496,12 +2596,8 @@
             obs.disconnect();
         },
         {
-            /*
-             * Start well before the wedding strip becomes visible.
-             * On mobile this gives the images time to download while
-             * keeping the homepage initial transfer lightweight.
-             */
-            rootMargin: "1600px 0px",
+            /* Start early enough for LTE / WhatsApp / Instagram browsers. */
+            rootMargin: "2200px 0px",
             threshold: 0.01
         }
     );

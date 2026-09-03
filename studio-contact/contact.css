@@ -52,7 +52,7 @@ nav{
 
 .logo {
     font-family: 'Playfair Display', serif;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-size: 22px;
     color: white;
     text-decoration: none;
@@ -575,17 +575,13 @@ footer{
 
     font-family:'Playfair Display';
     font-size:24px;
-    letter-spacing:2px;
+    letter-spacing:4px;
     color:white;
 
     gap:0;
 }
 
-.flip-d{
-    display:inline-block;
-    transform:scaleX(-1);
-    margin-left:-2px; /* adjust this value */
-}
+
 
 .studio-text{
     margin-left:10px;
@@ -608,12 +604,7 @@ footer{
 
 }
 
-.flip-d{
 
-    display:inline-block;
-    transform:scaleX(-1);
-
-}
 
 .studio-text{
 
@@ -622,6 +613,25 @@ footer{
     font-family:'Inter';
     font-size:13px;
 
-    letter-spacing:4px;
+    letter-spacing:2px;
 
+}
+@media (max-width:768px){
+
+    .logo span{
+        font-size:16px;
+    }
+
+    .studio-text{
+        font-size:13px;
+        letter-spacing:2px;
+        margin-left:8px;
+    }
+.flip-d{
+
+    display:inline-block;
+    transform:scaleX(-1);
+    margin-left:-5px;
+
+}
 }

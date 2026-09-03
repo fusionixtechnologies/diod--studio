@@ -789,6 +789,28 @@ nav ul a:hover::after {
     transform: scale(1.06);
 }
 
+/* Wedding row reliability fix for iOS / WhatsApp browsers */
+.wedding-series .row-left,
+.wedding-series .row-right {
+    animation-play-state: paused;
+}
+
+.wedding-series.wedding-ready .row-left,
+.wedding-series.wedding-ready .row-right {
+    animation-play-state: running;
+}
+
+.gallery-card img.wedding-lazy {
+    opacity: 0;
+}
+
+.gallery-card img.wedding-lazy.wedding-loaded {
+    opacity: 1;
+    transition:
+        opacity .25s ease,
+        transform .8s;
+}
+
 @keyframes moveLeft {
     from { transform: translate3d(0,0,0); }
     to { transform: translate3d(-50%,0,0); }
